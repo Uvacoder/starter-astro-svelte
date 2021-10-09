@@ -1,0 +1,21 @@
+---
+import { toTitleCase } from '../utils'
+import { NAV_ITEMS, SiteNavItem } from '../config'
+
+export type Props = {
+    skip: SiteNavItem
+}
+const { skip } = Astro.props
+
+const shouldSkip = (navItemKey) => NAV_ITEMS[navItemKey] && navItemKey === skip
+---
+
+<nav class="nav">
+    <ul class="inline-flex list-none gap-4 text-xl font-semibold text-purple-500">
+        {
+            Object.keys(NAV_ITEMS).map(navItemKey => !shouldSkip(navItemKey) && <li>
+                <a href={NAV_ITEMS[navItemKey].path} title={NAV_ITEMS[navItemKey].title}>{toTitleCase(NAV_ITEMS[navItemKey].title)}</a>
+            </li>)
+        }
+    </ul>
+</nav>

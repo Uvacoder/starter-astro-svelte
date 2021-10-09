@@ -1,0 +1,8 @@
+---
+import Podcast from './Podcast.astro';
+
+const { podcasts } = Astro.props
+---
+{podcasts.map((podcast) => (
+    <Podcast podcast={podcast}/>
+))}

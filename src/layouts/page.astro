@@ -1,0 +1,31 @@
+---
+import MainLayout from '../components/MainLayout.astro';
+import BaseHead from '../components/BaseHead.astro';
+
+const { content } = Astro.props
+---
+<!doctype html>
+<html lang="en">
+    <head>
+        <BaseHead
+            title={content.title ? `Astro - Note | ${content.title}` : 'Astro - Note'}
+            description={content.description}
+        />
+    </head>
+    <body class="font-sans antialiased">
+        <MainLayout>
+            <!-- page: frontmatter -->
+
+            <h1 class="text-center text-gray-700">{content.title}</h1>
+            <h5 class="text-center text-gray-500">{content.description}</h5>
+
+            <!-- post: separator -->
+            <hr />
+
+            <!-- post: content -->
+            <section class="text-center">
+                <slot />
+            </section>
+        </MainLayout>
+    </body>
+</html>
